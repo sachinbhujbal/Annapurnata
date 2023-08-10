@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85219017699",
+    "project_id": "annapurnata-503ba",
+    "storage_bucket": "annapurnata-503ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85219017699:android:ca9ca557b723c120e1d6d6",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85219017699-acv3csdi346hpnq7jelkhvbre1n2qv63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiP6yOrxQPc8bet_NaF22Nv8Z61h3hFJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85219017699-acv3csdi346hpnq7jelkhvbre1n2qv63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

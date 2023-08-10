@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name" translatable="false">Annapurnath</string>
+    <string name="logo_name" translatable="false">Feed to Needy</string>
+    <string name="register_head">Kindly Register Yourself</string>
+</resources>
