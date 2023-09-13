@@ -94,11 +94,12 @@
             android:id="@+id/edit_Birth"
             android:inputType="date"
             android:layout_below="@+id/birth_id"
-            android:hint="Enter Your Birth Date"
+            android:hint="Select Your Birth Date"
             android:layout_marginTop="8dp"
             android:padding="8dp"
             android:textSize="16sp"
-            android:background="@drawable/border">
+            android:background="@drawable/border"
+            android:focusable="false">
         </EditText>
 
         <TextView
