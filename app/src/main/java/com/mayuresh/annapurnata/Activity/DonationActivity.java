@@ -8,7 +8,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -33,18 +31,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.mayuresh.annapurnata.Adapter.CardsAdapter;
-import com.mayuresh.annapurnata.Interface.OnScratchListener;
 import com.mayuresh.annapurnata.ModelClass.Donors;
 import com.mayuresh.annapurnata.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 
 public class DonationActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -61,8 +53,7 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
     Button donate;
     ProgressDialog pg;
     EditText quantity1, phone1, aadhar1, description1;
-
-
+    String latlang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +92,7 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
                     LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(userLocation).title("Current Location"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+                    latlang = String.format(Locale.getDefault(), "(%.7f,%.7f)", userLocation.latitude, userLocation.longitude);
                 }
             }
         };
@@ -145,7 +137,7 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
                 else
                 {
                     reference = database.getReference().child("Donors").child(aadhar);
-                    Donors donor = new Donors(quantity, phone, aadhar, description, map);
+                    Donors donor = new Donors(quantity, phone, aadhar, description, latlang);
 
                     reference.setValue(donor).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -154,7 +146,6 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
                             {
                                 pg.dismiss();
                                 Toast.makeText(DonationActivity.this,"You Saved a Life Today",Toast.LENGTH_LONG).show();
-
                             }
                             else
                             {
@@ -167,8 +158,6 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
     }
-
-
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -238,5 +227,4 @@ public class DonationActivity extends AppCompatActivity implements OnMapReadyCal
         super.onLowMemory();
         mMapView.onLowMemory();
     }
-
 }
