@@ -14,7 +14,7 @@ import com.mayuresh.annapurnata.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    CardView donate, receive, drivers, aboutus;
+    CardView donate, receive, drivers, aboutus,rewards;
     FirebaseAuth auth;
     Button logout;
     private boolean doubleBackToExitPressedOnce = false;
@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         receive=findViewById(R.id.receive);
         drivers=findViewById(R.id.drivers);
         aboutus=findViewById(R.id.aboutus);
+        rewards=findViewById(R.id.rewards);
 
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +60,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, AboutActivity.class));
             }
         });
+
+        rewards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,RewardActivity.class));
+            }
+        });
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
